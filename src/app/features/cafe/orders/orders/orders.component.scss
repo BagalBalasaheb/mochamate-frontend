@@ -1,0 +1,58 @@
+.ordersHead {
+    .mat-mdc-card-outlined {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        align-items: center;
+        padding: 6px;
+    }
+}
+
+.customerHead {
+    .mat-mdc-card-outlined {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .csDetailsHead {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            align-items: center;
+
+        }
+    }
+
+    .formDiv {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 16px;
+
+        .mat-mdc-form-field {
+            width: calc(25% - 3px);
+        }
+
+    }
+}
+
+.mat-mdc-card-content:first-child {
+    padding: 16px;
+}
+
+.example-container {
+    height: 40%;
+    overflow: auto;
+}
+
+table {
+    width: 100%;
+}
+
+.mat-mdc-header-cell,
+td {
+    text-align: center;
+}

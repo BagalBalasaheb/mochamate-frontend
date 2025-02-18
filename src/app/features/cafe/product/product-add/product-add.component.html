@@ -1,0 +1,60 @@
+<div>
+  <mat-toolbar class="tool-bar" style="display: flex;justify-content: center;align-items: center;">
+    <span>Add Product</span>
+  </mat-toolbar>
+  <mat-dialog-content>
+    <form [formGroup]="product">
+
+      <div class="formDiv">
+        <!-- Product Name Field -->
+        <mat-form-field appearance="fill">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Product Name" formControlName="productName">
+          <mat-error *ngIf="product.get('productName')?.hasError('required')">
+            Product Name is required.
+          </mat-error>
+        </mat-form-field>
+
+        <div>
+          <!-- Product Price Field -->
+          <mat-form-field appearance="fill">
+            <mat-label>Price</mat-label>
+            <input matInput placeholder="Product Price" formControlName="productPrice" type="number">
+            <mat-error *ngIf="product.get('productPrice')?.hasError('required')">
+              Price is required.
+            </mat-error>
+            <mat-error *ngIf="product.get('productPrice')?.hasError('min')">
+              Price must be greater than 0.
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Product Category Field -->
+          <mat-form-field appearance="fill">
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="productCategory">
+              <mat-option *ngFor="let category of categories" [value]="category.id">{{category.name}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="product.controls['productCategory'].invalid && product.controls['productCategory'].touched">
+              Please select a category.
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Product Description Field -->
+        <mat-form-field appearance="fill">
+          <mat-label>Description</mat-label>
+          <input matInput placeholder="Product Description" formControlName="productDescription">
+          <mat-error *ngIf="product.get('productDescription')?.hasError('required')">
+            Description is required.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions style=" display: flex; justify-content: center; align-items: center;">
+    <button mat-flat-button (click)="data ? editProduct() : addProduct()" [disabled]="!(product.valid && product.dirty)">Submit</button>
+    <button mat-raised-button mat-dialog-close>Close</button>
+  </mat-dialog-actions>
+
+</div>

@@ -1,0 +1,59 @@
+<div>
+    <mat-toolbar class="tool-bar" style="display: flex;justify-content: center;align-items: center;">
+        <span>View Bill</span>
+        <button mat-icon-button mat-dialog-close style="position: absolute; right: 16px;">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-toolbar>
+    <mat-dialog-content>
+        <div class="formDiv">
+            <!-- Header Section -->
+            <div class="header">
+                <h2>MochaMate</h2>
+                <p>Pune</p>
+            </div>
+
+            <!-- Customer Info -->
+            <div class="customer-info">
+                <h3>Bill To :</h3>
+                <p><strong>Name :</strong> {{ bill.name }}</p>
+                <p><strong>Email :</strong> {{ bill.email }}</p>
+                <p><strong>Contact Number :</strong> {{ bill.contactnumber }}</p>
+            </div>
+
+            <!-- Product Details -->
+            <h3>Product Details :</h3>
+            <table class="invoice-table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of bill.productDetails; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ product.item }}</td>
+                        <td>{{ product.quantity }}</td>
+                        <td>₹{{ product.price }}</td>
+                        <td>₹{{ product.quantity * product.price }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Payment Method and Total -->
+            <div class="total-section">
+                <p><strong>Payment Method:</strong> {{ bill.paymentMethod }}</p>
+                <h3><strong>Total Amount:</strong> ₹{{ totalAmount }}</h3>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                <p>Thank you for your business!</p>
+            </div>
+        </div>
+    </mat-dialog-content>
+
+</div>

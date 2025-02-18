@@ -1,0 +1,33 @@
+<div>
+  <mat-toolbar class="tool-bar" style="display: flex;justify-content: center;align-items: center;">
+    <span>Add Category</span>
+  </mat-toolbar>
+
+  <mat-dialog-content>
+    <form [formGroup]="category">
+
+      <div class="formDiv">
+        <mat-form-field appearance="fill">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Category Name" formControlName="categoryName">
+          <mat-error *ngIf="category.get('categoryName')?.hasError('required')">
+            Category Name is required.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Description</mat-label>
+          <input matInput placeholder="Description" formControlName="categoryDescription">
+          <mat-error *ngIf="category.get('categoryDescription')?.hasError('required')">
+            Category Description is required.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions style=" display: flex; justify-content: center; align-items: center;">
+    <button mat-flat-button (click)="data ? editCategory() : addCategory()" [disabled]="!(category.valid && category.dirty)">Submit</button>
+    <button mat-raised-button mat-dialog-close>Close</button>
+  </mat-dialog-actions>
+
+</div>

@@ -1,0 +1,73 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+
+html {
+  @include mat.theme((
+    color: (
+      primary: mat.$orange-palette,
+      tertiary: mat.$violet-palette,
+      theme-type: light,
+    ),
+    typography: Roboto,
+    density: 0
+  ));
+
+  .tool-bar {
+    @include mat.toolbar-overrides((
+      container-background-color: var(--mat-sys-primary-container),
+      container-text-color: var(--mat-sys-on-primary-container)
+    ));
+  }
+  a .mdc-list-item__primary-text {
+    gap: 6px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  mat-icon {
+    color: var(--mat-sys-on-primary-container);
+  }
+
+  .active-link {
+    background-color: var(--mat-sys-primary-container);
+    color: var(--mat-sys-on-primary-container);
+    font-weight: bold;
+}
+  
+}/* You can add global styles to this file, and also import other style files */
+
+  html, body { height: 100%; width: 100%; box-sizing: border-box; overflow: hidden}
+  body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.container {
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+}
+
+
+.mat-drawer.mat-drawer-opened.mat-drawer-opened {
+  border-radius: 0;
+}
+
+.mat-drawer-inner-container {
+  background-color: white;
+}
+
+.search {
+  .mat-mdc-card {
+    padding: 16px;
+    .mat-mdc-form-field-subscript-wrapper {
+      display: none;
+  }
+  }
+}
+
+.mat-form-field input[type="number"] {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}

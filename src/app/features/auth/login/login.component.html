@@ -1,0 +1,29 @@
+<div>
+    <mat-toolbar class="tool-bar" style="display: flex;justify-content: center;align-items: center;">
+        <span>Log In</span>
+    </mat-toolbar>
+
+    <mat-dialog-content>
+        <form [formGroup]="login">
+
+            <div class="formDiv">
+                <mat-form-field appearance="fill">
+                    <mat-label>E-mail</mat-label>
+                    <input matInput placeholder="E-mail" formControlName="email">
+                    <mat-error></mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Password</mat-label>
+                    <input matInput placeholder="Password" formControlName="password">
+                    <mat-error></mat-error>
+                </mat-form-field>
+            </div>
+
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions style=" display: flex; justify-content: center; align-items: center;">
+        <button mat-flat-button (click)="logIn()" [disabled]="!(login.valid && login.dirty)">Submit</button>
+        <button mat-raised-button mat-dialog-close>Close</button>
+    </mat-dialog-actions>
+
+</div>
