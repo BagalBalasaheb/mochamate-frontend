@@ -60,7 +60,7 @@ export class BillComponent {
       contactNumber: values.contactnumber,
       paymentMethod: values.paymentMethod,
       total: values.total,
-      productDetails: values.productDetails
+      productDetails: JSON.stringify(values.productDetails)
     }
 
     this.$billService.generatePdf(data).subscribe((result: any) => {
