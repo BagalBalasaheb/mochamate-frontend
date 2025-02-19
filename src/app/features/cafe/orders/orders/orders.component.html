@@ -147,8 +147,8 @@
             </ng-container>
             <ng-container matColumnDef="Delete">
                 <th mat-header-cell *matHeaderCellDef> Delete </th>
-                <td mat-cell *matCellDef="let element">
-                    <button mat-icon-button><mat-icon>delete</mat-icon></button>
+                <td mat-cell *matCellDef="let element; let i = index">
+                    <button mat-icon-button (click)="handleDelete(i, element)"><mat-icon>delete</mat-icon></button>
                 </td>
             </ng-container>
 

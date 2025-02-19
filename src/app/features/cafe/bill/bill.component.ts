@@ -65,12 +65,11 @@ export class BillComponent {
 
     this.$billService.generatePdf(data).subscribe((result: any) => {
       saveAs(result, values.uuid + '.pdf');
-      this._snackBar.open(result.message, 'ok');
+      this._snackBar.open("Bill Downloaded Successfully", 'ok');
     })
   }
 
   deleteAction(data: any) {
-
     this.deleteBillId(data.id)
   }
 

@@ -32,7 +32,7 @@ export class OrdersComponent {
     this.customerDetails = this.fb.group({
       customerName: ['', [Validators.required]],
       customerEmail: ['', [Validators.required]],
-      customerNumber: ['', [Validators.required]],
+      customerNumber: [null, [Validators.required]],
       paymentMethod: ['', [Validators.required]],
       product: ['', [Validators.required]],
       productcategory: ['', [Validators.required]],
@@ -58,7 +58,7 @@ export class OrdersComponent {
       this.customerDetails.controls['total'].setValue(0);
     })
   }
-  
+
   getProductDetails(data: any) {
     this.$productService.getProductById(data.id).subscribe(result => {
       this.price = result.price;
@@ -75,7 +75,7 @@ export class OrdersComponent {
     } else if (temp != '') {
       this.customerDetails.controls['productQuantitiy'].setValue('1');
       this.customerDetails.controls['total'].setValue(this.customerDetails.controls['productQuantitiy'].value * this.customerDetails.controls['productPrice'].value);
-    }else{
+    } else {
       this.customerDetails.controls['total'].setValue(0)
     }
   }
@@ -86,11 +86,10 @@ export class OrdersComponent {
   }
 
   validateSubmit() {
-    if (this.totalAmount === 0 || this.customerDetails.controls['customerName'].value === null || this.customerDetails.controls['customerEmail'].value === null || this.customerDetails.controls['customerNumber'].value === null || this.customerDetails.controls['paymentMethod'].value === null) return true;
+    if (this.totalAmount === 0 || this.customerDetails.controls['customerName'].value ==='' || this.customerDetails.controls['customerEmail'].value ==='' || this.customerDetails.controls['customerNumber'].value === null || this.customerDetails.controls['paymentMethod'].value === '') return true;
 
     return false
   }
-  // this._snackBar.open(result.message, 'ok');
 
   add() {
     let formData = this.customerDetails.value;
@@ -109,6 +108,18 @@ export class OrdersComponent {
       this.dataSource = [...this.dataSource];
       this._snackBar.open("Product Added To Bill", 'ok');
     };
+
+    this.customerDetails.controls['productQuantitiy'].setValue(0);
+    this.customerDetails.controls['productPrice'].setValue(0);
+    this.customerDetails.controls['total'].setValue(0);
+    this.customerDetails.controls['product'].setValue('');
+    this.customerDetails.controls['productcategory'].setValue('');
+
+    this.customerDetails.controls['product'].markAsUntouched();
+    this.customerDetails.controls['productQuantitiy'].markAsUntouched();
+    this.customerDetails.controls['productPrice'].markAsUntouched();
+    this.customerDetails.controls['total'].markAsUntouched();
+    this.customerDetails.controls['productcategory'].markAsUntouched();
   }
 
   handleDelete(data: any, element: any) {
