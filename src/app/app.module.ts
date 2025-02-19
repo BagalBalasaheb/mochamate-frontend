@@ -12,6 +12,7 @@ import { AuthModule } from './features/auth/auth.module';
 import { AuthInterceptor } from './features/auth/auth-interceptor.service'
 import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { SnackbarComponent } from './material/snackbar/snackbar.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +29,7 @@ import { SnackbarComponent } from './material/snackbar/snackbar.component';
     AuthModule,
     HttpClientModule
   ],
-  providers: [
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy },
     provideAnimationsAsync(),
     {
       provide: HTTP_INTERCEPTORS,
