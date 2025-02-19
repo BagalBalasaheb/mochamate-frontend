@@ -13,16 +13,17 @@ export class OrderDetailComponent {
   totalAmount = 0;
   constructor(private dialogRef: MatDialogRef<OrderDetailComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
     this.bill = this.data;
-    
   }
 
   ngOnInit(): void {
-    this.calculateTotal();
-  }
 
-  calculateTotal() {
+    if (typeof this.bill.productDetails === 'string') {
+      this.bill.productDetails = JSON.parse(this.bill.productDetails);
+    }
+  
     this.totalAmount = this.bill.productDetails.reduce(
-      (sum: any, product: any) => sum + product.quantity * product.price, 0
+      (sum: number, product: any) => sum + Number(product.quantity) * product.price, 
+      0
     );
   }
 
