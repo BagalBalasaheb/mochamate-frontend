@@ -13,7 +13,7 @@ import { MatTableDataSource } from '@angular/material/table';
 
 export class CategoryComponent {
   displayedColumns = ['No', 'Category', 'Description', 'Action'];
-  dataSource: MatTableDataSource<any> = new MatTableDataSource(); 
+  dataSource: MatTableDataSource<any> = new MatTableDataSource();
 
   constructor(private dialog: MatDialog, private $categoryService: CategoryService) {
   }
